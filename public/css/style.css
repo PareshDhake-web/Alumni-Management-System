@@ -1,0 +1,8 @@
+/* General body and HTML styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(249, 237, 237) /* Light Aqua Background */
+}
+

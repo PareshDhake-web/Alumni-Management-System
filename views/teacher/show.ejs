@@ -1,0 +1,272 @@
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.profile-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Card */
+.profile-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* Profile Photo - Positioned at Top Right */
+.profile-photo {
+    position: absolute;
+    top: -10px;
+    right: 0px;
+}
+
+.profile-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #8a2be2; /* Violet border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Info */
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info h1 {
+    font-size: 32px;
+    color: brown; 
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #4d4d4d;
+    margin: 5px 0;
+}
+
+.profile-info p strong {
+    color: brown;
+}
+
+/* Skills List */
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skills-list li {
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Job & Education Info */
+.job-info, .education-info {
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.job-info h4, .education-info h4 {
+    font-size: 20px;
+    color: brown;
+}
+
+/* Profile Footer */
+.profile-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Outlined Buttons */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background: transparent;
+}
+
+.btn-outline-danger:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* A4 Printable Version */
+@media print {
+    .profile-container {
+        max-width: 210mm;
+        margin: 0;
+        padding: 10mm;
+    }
+
+    .profile-card {
+        display: block;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .profile-header {
+        display: block;
+        text-align: center;
+    }
+
+    .profile-footer {
+        display: none;
+    }
+
+    .profile-photo {
+        display: none;
+    }
+}
+
+/* Back Button Style */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #d300f8; /* Grayish background */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #02bcf5; /* Darker gray */
+}
+
+.back-button i {
+    font-size: 18px;
+}
+
+
+</style>
+
+<link rel="stylesheet" href="/css/style.css" />
+<!-- Back Button (Top Left) -->
+<a href="/teacher_home" class="back-button">
+    <i class="bi bi-arrow-left"></i> Back
+</a>
+
+
+
+
+<!-- Profile Page -->
+<div class="container mt-5 profile-container">
+    <div class="profile-card">
+        <!-- Profile Header (Photo + Basic Info) -->
+        <div class="profile-header">
+            <div class="profile-info">
+                <h1><%= student.studentname %></h1>
+                <p><strong>Email:</strong> <%= student.email %></p>
+                <p><strong>Qualification:</strong> <%= student.qualification %></p>
+                <p><strong>Passout Year:</strong> <%= student.passoutYear %></p>
+                <p><strong>Address:</strong> <%= student.Address %></p>
+                <p><strong>Mobile Number:</strong> <%= student.mobileNo %></p>
+                <p><strong>Gender:</strong> <%= student.gender %></p>
+                <p><strong>Date of Birth:</strong> <%= student.dob %></p>
+                <p><strong>City:</strong> <%= student.city %></p>
+                <p><strong>Country:</strong> <%= student.country %></p>
+            </div>
+            <div class="profile-photo">
+                <img src="<%= student.photo || 'https://tse1.mm.bing.net/th?id=OIP.BoqJ8tKGpWzJm8UbfGVbOwHaHa&pid=Api&P=0&h=180' %>" alt="Profile Photo">
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        
+
+  <!-- Job Experience Section -->
+<% if (student.job && student.job.companyName) { %>
+    <div class="job-info">
+        <h4>Job Experience</h4>
+        <p><strong>Company Name:</strong> <%= student.job.companyName %></p>
+        <p><strong>Location:</strong> <%= student.job.location || 'Not provided' %></p>
+        <p><strong>Job Title:</strong> <%= student.job.jobTitle %></p>
+        <p><strong>Years of Experience:</strong> <%= student.job.yearsOfExperience || 'Not provided' %> years</p>
+        <p><strong>Job Description:</strong> <%= student.job.jobDescription || 'Not provided' %></p>
+    </div>
+<% } %>
+
+<!-- Education Section -->
+<% if (student.pg && student.pg.collegeName) { %>
+    <div class="education-info">
+        <h4>Post Graduation</h4>
+        <p><strong>College Name:</strong> <%= student.pg.collegeName %></p>
+        <p><strong>Degree Name:</strong> <%= student.pg.degreeName %></p>
+        <p><strong>Special Subject:</strong> <%= student.pg.specialSubject || 'Not provided' %></p>
+        <p><strong>Graduation Year:</strong> <%= student.pg.graduationYear || 'Not provided' %></p>
+        <p><strong>Additional Info:</strong> <%= student.pg.additionalInfo || 'Not provided' %></p>
+    </div>
+<% } %>
+
+
+        <!-- Profile Footer (Edit/Delete Buttons) -->
+        <div class="profile-footer">
+            <a href="/teacher_home/<%= student._id %>/edit" method="GET" class="btn btn-outline-primary">Edit Profile</a>
+            <form action="/teacher_home/<%= student._id %>/?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-outline-danger">Delete Profile</button>
+            </form>
+        </div>
+        
+
+    </div>
+</div>

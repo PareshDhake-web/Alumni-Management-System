@@ -1,0 +1,139 @@
+<% layout("/layouts/boilerplate") %>
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <style>
+        /* Title Styling */
+        .batch-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    
+        .batch-title h1 {
+            font-size: 3.5rem;
+            color: #7d5e5b;
+            font-weight: 700;
+            animation: fadeIn 1s ease-in-out;
+        }
+    
+        .batch-title p {
+            font-size: 1.25rem;
+            color: #6c757d;
+        }
+    
+        /* Batch Cards Container */
+        .batch-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 0 20px;
+        }
+    
+        /* Single Batch Card */
+        .batch-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #3a3d40, #1c1f21);
+            padding: 20px;
+            color: white;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 50px;
+            margin-right:50px ;
+            height: 150px;
+            width: 350px;
+            display: inline-block;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        
+        transition: transform 0.3s;
+    }
+        
+    
+        .batch-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #1c1f21, #3a3d40);
+            transform: scale(1.05);
+        }
+    
+        .batch-card h3 {
+            margin-bottom: 10px;
+        color: #ffcc00;
+        }
+    
+        .batch-card button {
+            bottom: 3px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #00ffa2;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        .batch-card button:hover {
+            background-color: #eaff00;
+            color: rgb(41, 25, 25);
+        }
+    
+        .batch-card a {
+            text-decoration: none;
+        }
+    
+        /* No Batch Found */
+        .no-batch-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #dc3545;
+            margin-top: 50px;
+        }
+        /* Teacher Cards Grid Layout */
+    
+
+    /* Fade-In Animation */
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+        /* Footer Style */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+    </style>
+    
+
+
+
+    <!-- Main Content for Batch -->
+
+  <!-- Title -->
+  <div class="batch-title">
+    <h1>Choose Your Batch</h1>
+    <p>Select your batch to view details of students</p>
+</div>
+  <div>
+    <% if(user1.length === 0) { %>
+        <h2 class="no-batch-message">No Batch Found</h2>
+        <% } else { %>
+        
+    <% user1.forEach(year => { %>
+      <div class="card batch-card">
+        <h3>Batch <%= year %></h3>
+        <a href="/student_batch/<%= user._id %>/<%= year %>">
+          <button class=" btn btn-outline-success">View students</button>
+        </a>
+      </div>
+    <% }) %>
+    <% } %>
+  </div>
+

@@ -1,0 +1,111 @@
+<% layout("/layouts/boilerplate") %>
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <style>
+        /* Title Styling */
+        .profile-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ff6f61;
+            background: linear-gradient(to right, #8a2be2, #4b0082, #CC0066);
+            /* Gradient */
+            color: transparent;
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeIn 2s ease-in-out;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        /* Animation for Title */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Profile Card Styling */
+        .profile-card {
+            width: 500px;
+            height: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            /* White background */
+            border: 2px solid #ffeb3b;
+            /* Yellowish border */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* .profile-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        } */
+
+        .profile-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .profile-card .card-body {
+            padding: 20px;
+        }
+
+        .profile-card .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .profile-card .card-text {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Content Section for Scrolling */
+        .content {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Make the page scrollable */
+        .container {
+            padding-bottom: 100px;
+            /* To prevent footer overlap */
+        }
+    </style>
+
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 class="profile-title">Profile of <%= student.username %>
+        </h1>
+
+        <!-- Profile Card -->
+        <div class="card profile-card">
+            <img src="<%= student.photo || 'https://via.placeholder.com/150' %>" class="card-img-top"
+                alt="<%= student.username %>">
+            <div class="card-body">
+                <h5 class="card-title">Username: <%= student.username %>
+                </h5>
+                <p class="card-text"><strong>Email:</strong>
+                    <%= student.email %>
+                </p>
+                <p class="card-text"><strong>Qualification:</strong>
+                    <%= student.qualification %>
+                </p>
+                <p class="card-text"><strong>Passout Year:</strong>
+                    <%= student.passoutYear %>
+                </p>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,119 @@
+<% layout("/layouts/boilerplate") %>
+    <link rel="stylesheet" href="/css/style.css" />
+
+
+    <style>
+        /* Title Styling */
+        .batch-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7d5e5b;
+            font-size: 4rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+
+
+        .batch-title p {
+            font-size: 1.25rem;
+            color: #6c757d;
+        }
+
+        /* Student Cards Styling */
+        .student-card {
+            height: 300px;
+            width: 300px;
+            display: inline-block;
+            margin: 50px;
+
+            cursor: pointer;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #3a3d40, #1c1f21);
+            color: white;
+            text-align: left;
+            transition: transform 0.3s;
+            /* Fancy gradient background */
+            padding: 15px;
+
+            /* Ensure text stands out */
+        }
+
+
+
+        .student-card:hover {
+            transform: translateY(-8px);
+            /* Lift effect */
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #1c1f21, #3a3d40);
+
+            /* Reverse gradient on hover */
+        }
+
+        .student-card .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            /* Center the image */
+        }
+
+        .student-card .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .student-card .card-body h5 {
+            margin-bottom: 10px;
+            color: #ffcc00;
+            /* White text */
+        }
+
+        .student-card .card-body p {
+            color: #ddd;
+            font-size: 1rem;
+            margin: 5px 0;
+            /* Lighter color for description */
+        }
+
+        /* Footer Style to Match First Footer */
+    </style>
+
+
+
+<!-- Main Content for Students in Selected Batch -->
+<!DOCTYPE html>
+
+    
+
+    <h1 class="batch-title">Students for <%= passoutYear %>
+    </h1>
+    <div>
+        <% if(user1.length===0) { %>
+            <h2>No Batch Found</h2>
+            <% } else { %>
+
+                <% user1.forEach(student=> { %>
+                    <div class="student-card">
+                        <h3 style="color: #ffcc00;">
+                            <%= student.username %>
+                        </h3>
+                        <p>Email: <%= student.email %>
+                        </p>
+                        <p>Qualification: <%= student.qualification %>
+                        </p>
+                        <p>City: <%= student.city %>
+                        </p>
+                        <p>SKills: <%= student.skills %>
+                        </p>
+                        <p>Passion: <%= student.job.jobTitle %>
+                        </p>
+
+                    </div>
+                    <% }) %>
+                        <% } %>
+    </div>

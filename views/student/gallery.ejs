@@ -1,0 +1,136 @@
+<% layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="/css/style.css" />
+
+<style>
+  .title-gallery {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #7d5e5b;
+    text-align: center;
+    margin-top: 50px;
+    animation: fadeIn 2s ease-in-out;
+    font-family: 'Rubik', sans-serif;
+  }
+  .card, .card-body {
+    background-color: rgb(225, 233, 237);
+    color: rgb(88, 0, 98);
+  }
+
+  /* Centering the modals */
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .modal-content {
+    background-color: rgb(237, 237, 227);
+    color: rgb(52, 52, 49);
+  }
+
+  /* Full image modal adjustments */
+  #viewImageModal .modal-content {
+    background-color: rgb(52, 52, 49);
+    text-align: center;
+  }
+
+  #fullImage {
+    width: 500px;
+    height: 400px;
+    object-fit: cover;
+    filter: none; /* Removed blurriness */
+  }
+</style>
+
+<div class="container mt-4">
+  <h2 class="text-center title-gallery">Gallery</h2>
+  <button class="btn btn-outline-primary mb-3" style="color: rgb(59, 57, 57);" data-bs-toggle="modal" data-bs-target="#addImageModal">
+    Upload Image
+  </button>
+
+  <div class="row">
+    <% images.forEach(image => { %>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <img src="<%= image.imageUrl %>" class="card-img-top" alt="Image" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5><%= image.description %></h5>
+            <p class="text-muted"><%= image.location %></p>
+            <button class="btn btn-sm btn-outline-success" onclick="showImageModal('<%= image.imageUrl %>')">View</button>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<!-- Add Image Modal -->
+<div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/student_Gallery/<%= userId %>" method="POST">
+          <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" name="imageUrl" required oninput="previewImage()">
+            <div class="text-center mt-2">
+              <img id="imagePreview" src="" style="width: 150px; height: 150px; border-radius: 50%; display: none;">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image View Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" aria-labelledby="viewImageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-color: rgb(52, 52, 49);">
+      <div class="modal-header">
+        <h5 class="modal-title text-white">Full Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="fullImage" src="" class="img-fluid" style="max-width: 100%; height: auto; object-fit: contain; border-radius: 10px;">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function previewImage() {
+    const imageUrl = document.getElementById("imageUrl").value;
+    const preview = document.getElementById("imagePreview");
+    if (imageUrl) {
+      preview.src = imageUrl;
+      preview.style.display = "block";
+    } else {
+      preview.style.display = "none";
+    }
+  }
+
+  function showImageModal(imageUrl) {
+    document.getElementById("fullImage").src = imageUrl;
+    var myModal = new bootstrap.Modal(document.getElementById('viewImageModal'));
+    myModal.show();
+  }
+</script>
